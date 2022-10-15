@@ -1,13 +1,34 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-//opens acces to navigation package
+//opens acces route mapping component
 import Navigation from '../Navigation';
+import LandingPage from '../Landing';
+import SignUpPage from '../SignUp';
+import SignInPage from '../SignIn';
+import PasswordForgetPage from '../PasswordForgot';
+import HomePage from '../Home';
+import AccountPage from '../Account';
+import AdminPage from '../Admin'
+
+import * as ROUTES from '../../constants/routes';
 
 //defines nagivation app
 const App = () => (
     <Router>
-        <Navigation />
+        <div>
+            <Navigation />
+
+            <hr />
+
+            <Route exact path={ROUTES.LANDING} component={LandingPage} />
+            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+            <Route path={ROUTES.HOME} component={HomePage} />
+            <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+            <Route path={ROUTES.ADMIN} component={AdminPage} />
+        </div>
     </Router>
 );
 

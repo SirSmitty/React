@@ -1,9 +1,9 @@
 import React from 'react';
 
-const App = () => (
+const PasswordForget = () => (
     <div>
-        <h1>PasswordForgot</h1>
+        <h1>PasswordForget</h1>
     </div>
 )
 
-export default App;
+export default PasswordForget;
