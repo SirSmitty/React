@@ -21,6 +21,12 @@ const Navigation = () => (
             <li>
                 <Link to={ROUTES.ADMIN}>Admin</Link>
             </li>
+            <li>
+                <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+            </li>
+            <li>
+                <Link to={ROUTES.PASSWORD_FORGET}>password forget</Link>
+            </li>
 
         </ul>
     </div>
