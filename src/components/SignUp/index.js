@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
 import { withFirebase } from '../Firebase';
-import { FirebaseContext } from '../Firebase'
+import { compose } from 'recompose';
 import * as ROUTES from '../../constants/routes';
+import { Link } from 'react-router-dom';
+import {
+    useLocation,
+    useNavigate,
+    useParams
+} from "react-router-dom";
+
+//implements the withRouter with the app components
+function withRouter(Component) {
+    function ComponentWithRouterProp(props) {
+        let location = useLocation();
+        let navigate = useNavigate();
+        let params = useParams();
+        return (
+            <Component
+                {...props}
+                router={{ location, navigate, params }}
+            />
+        );
+    }
+
+    return ComponentWithRouterProp;
+}
+
 
 //initializing the sign up page
 const SignUpPage = () => (
@@ -38,6 +60,7 @@ class SignUpFormBase extends Component {
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
+                this.props.router.navigate(ROUTES.HOME);
             })
             .catch(error => {
                 this.setState({ error });
@@ -112,9 +135,10 @@ const SignUpLink = () => {
     </p>
 };
 
-const SignUpForm = withFirebase(SignUpFormBase)
-
-
+const SignUpForm = compose(
+    withRouter,
+    withFirebase,
+)(SignUpFormBase)
 
 export default SignUpPage;
 
