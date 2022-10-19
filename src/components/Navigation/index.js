@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import SignOutButton from '../SignOut'
 import * as ROUTES from '../../constants/routes';
 
-const Navigation = () => (
+const Navigation = ({ authUser }) => (
+    <div>
+        {authUser ? <NavigationAuth /> : <NavigationNonAuth />}
+    </div>
+)
+
+const NavigationAuth = () => (
     <div>
         <ul>
-            <li>
-                <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-            </li>
             <li>
                 <Link to={ROUTES.LANDING}>Landing</Link>
             </li>
@@ -19,15 +22,6 @@ const Navigation = () => (
                 <Link to={ROUTES.ACCOUNT}>Account</Link>
             </li>
             <li>
-                <Link to={ROUTES.ADMIN}>Admin</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.PASSWORD_FORGET}>password forget</Link>
-            </li>
-            <li>
                 <SignOutButton />
             </li>
 
@@ -35,4 +29,16 @@ const Navigation = () => (
     </div>
 )
 
+const NavigationNonAuth = () => (
+    <div>
+        <ul>
+            <li>
+                <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+            </li>
+            <li>
+                <Link to={ROUTES.LANDING}>Landing</Link>
+            </li>
+        </ul>
+    </div>
+)
 export default Navigation;

@@ -130,9 +130,11 @@ class SignUpFormBase extends Component {
 
 //link for sign in page
 const SignUpLink = () => {
-    <p>
-        Dont have an Account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-    </p>
+    return (
+        <p>
+            Dont have an Account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+        </p>
+    )
 };
 
 const SignUpForm = compose(
